@@ -4,7 +4,7 @@ title = "Kanon's memo"
 theme = "material"
 copyright = "© 2026 奏音（Kanon）"
 # 作者設定
-[Params]
+[params]
   author = "奏音（Kanon）"
 
     [params.giscus]
