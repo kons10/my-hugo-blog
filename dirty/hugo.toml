@@ -6,6 +6,8 @@ copyright = "© 2026 奏音（Kanon）"
 
 [Params]
   author = "奏音（Kanon）"
+  # Hugo の記事セクションは content/post（単数形）
+  mainSections = ["post"]
 
 [Params.giscus]
   enabled = true
