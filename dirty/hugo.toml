@@ -6,35 +6,24 @@ copyright = "© 2026 奏音（Kanon）"
 # 作者設定
 [params]
   author = "奏音（Kanon）"
+  giscus_enabled = true
+  giscus_repo = "kons10/my-hugo-blog"
+  giscus_repoId = "R_kgDOQ6vD7g"
+  giscus_category = "giscus"
+  giscus_categoryId = "DIC_kwDOQ6vD7s4DAUyo"
 
-    [params.giscus]
-      enabled = true
-      repo = "kons10/my-hugo-blog"
-      repoId = "R_kgDOQ6vD7g"
-      category = "giscus"
-      categoryId = "DIC_kwDOQ6vD7s4DAUyo"
-
-# コードハイライト設定
 [markup]
   [markup.highlight]
-    # コードブロックのハイライトを有効化
     codeFences = true
-    # 言語を自動推測
     guessSyntax = true
-    # 行番号を表示する場合はtrueに
     lineNos = false
-    # 行番号をテーブル形式で表示（コピペしやすい）
     lineNumbersInTable = false
-    # CSSクラスを使用（style.cssで色をカスタマイズ可能）
     noClasses = true
-    # ハイライトのスタイル（monokai, dracula, github, vs など）
     style = "monokai"
-    # タブ幅
     tabWidth = 4
 
 [Services]
   [Services.Disqus]
-    # Shortname = "XXX"
   [Services.googleAnalytics]
     # id = "XXX"
 
@@ -43,14 +32,14 @@ copyright = "© 2026 奏音（Kanon）"
   url = "/tags/"
   weight = 1
   [menu.main.params]
-    icon = "label"
+  icon = "label"
 
 [[menu.main]]
   name = "About"
   url = "/page/about/"
-  weight = 2
+  weight = 2  
   [menu.main.params]
-    icon = "info"
+  icon = "info"
 
 [[params.social]]
   name = "GitHub"
