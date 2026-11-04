@@ -6,11 +6,20 @@ copyright = "© 2026 奏音（Kanon）"
 
 [Params]
   author = "奏音（Kanon）"
-  giscus_enabled = true
-  giscus_repo = "kons10/my-hugo-blog"
-  giscus_repoId = "R_kgDOQ6vD7g"
-  giscus_category = "giscus"
-  giscus_categoryId = "DIC_kwDOQ6vD7s4DAUyo"
+
+[Params.giscus]
+  enabled = true
+  repo = "kons10/my-hugo-blog"
+  repoId = "R_kgDOQ6vD7g"
+  category = "giscus"
+  categoryId = "DIC_kwDOQ6vD7s4DAUyo"
+  mapping = "pathname"
+  strict = "0"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "bottom"
+  theme = "preferred_color_scheme"
+  lang = "ja"
 
 [markup]
   [markup.highlight]

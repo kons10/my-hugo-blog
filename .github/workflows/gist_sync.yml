@@ -1,41 +1,58 @@
-name: 🚀 Update Submodules & Deploy Hugo to Cloudflare Pages
+name: 📝Sync Latest Gist to Hugo
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
 
 permissions:
+  actions: write
   contents: write
-  id-token: write
 
 jobs:
-  update-and-build:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout
+      - name: Checkout repository
         uses: actions/checkout@v7
         with:
           submodules: recursive
-          fetch-depth: 0
 
-      - name: 🔐 Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+          cache: 'pip'
 
-      - name: 🔄 Update submodules
+      - name: Install dependencies
         run: |
-          git submodule update --remote --recursive
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
 
-      - name: 🚀 Commit and Push (if changes exist)
+      - name: Run script
+        run: python scripts/update_gist.py
+
+      - name: Commit and Push
+        id: push_step
         run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            git add .
-            git commit -m "🤖 chore: update submodules to latest"
-            git push origin main --force-with-lease
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dirty/content/post/*.md
+          if ! git diff --cached --exit-code; then
+            git commit -m "chore: add latest gist post"
+            git push origin main
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
           else
-            echo "😴 変更なし"
+            echo "変更なし"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Trigger Hugo Deploy
+        if: steps.push_step.outputs.pushed == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'hugo.yml',
+              ref: 'main'
+            })
