@@ -1,4 +1,3 @@
 [submodule "dirty/themes/material"]
     path = dirty/themes/material
     url = https://github.com/ams-www/material-blog-theme.git
-    branch = feat/giscus-comments
