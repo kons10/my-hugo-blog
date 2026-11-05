@@ -6,7 +6,6 @@ copyright = "© 2026 奏音（Kanon）"
 
 [Params]
   author = "奏音（Kanon）"
-  # Hugo の記事セクションは content/post（単数形）
   mainSections = ["post"]
 
 [Params.giscus]
@@ -38,16 +37,23 @@ copyright = "© 2026 奏音（Kanon）"
   [Services.googleAnalytics]
 
 [[menu.main]]
+  name = "Categories"
+  url = "/categories/"
+  weight = 1
+  [menu.main.params]
+  icon = "folder"
+
+[[menu.main]]
   name = "Tags"
   url = "/tags/"
-  weight = 1
+  weight = 2
   [menu.main.params]
   icon = "label"
 
 [[menu.main]]
   name = "About"
   url = "/page/about/"
-  weight = 2  
+  weight = 3
   [menu.main.params]
   icon = "info"
 
